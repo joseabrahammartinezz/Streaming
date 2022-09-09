@@ -13,9 +13,10 @@ app.get("/video", function (req, res) {
     }
     const videoPath = "bandas.mp4";
     const videoSize = fs.statSync("bandas.mp4").size;
-    const CHUNK_SIZE = 10 ** 6;
+    const CHUNK_SIZE = 10 ** 5;
     const start = Number(range.replace(/\D/g, ""));
     const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+    console.log("inicio:" + start + "  fin:" + end);
     const contentLength = end - start + 1;
     const headers = {
         "Content-Range": `bytes ${start}-${end}/${videoSize}`,
